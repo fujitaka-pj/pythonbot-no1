@@ -1,24 +1,49 @@
 # -*- coding: utf-8 -*-
 import sys
 import random
+import datetime
 
 def reply(user_input=""):
   selection = int(random.random() * 3)
   if selection == 0:
-    print("How are you??")
+    return "How are you?"
   elif selection == 1:
-    print("I am fine.")
+    return "I am fine."
   else:
-    if user_input != "":
-      print(user_input)
-    else:
-      print(selection)
+    return user_input
 
-if __name__ == "__main__"
+def filename():
+  todaydetail = datetime.datetime.today()
+  filename = str(todaydetail.year)
+  filename += str(todaydetail.month)
+  filename += str(todaydetail.day)
+  filename += str(todaydetail.hour)
+  filename += str(todaydetail.minute)
+  filename += str(todaydetail.second)
+  filename += ".txt"
+  return filename
+
+def save_file(conversations):
+  file = open(filename(), "w")
+  for conversation in conversations:
+    file.write(conversation)
+    file.write('\n')
+  file.close()
+
+if __name__ == "__main__":
+  print('Hey, Welcome!!')
+  conversations = []
   for value in range(3):
-    user_input = sys.stdin.readline()
-    print(user_input)
-    reply(user_input)
-    if user_input == 'exit\n':
+    user_input = input()
+    conversations.append(user_input)
+
+    if user_input == 'exit':
       print("Bye")
+      conversations.append('Bye')
       break
+
+    bot_reply = reply(user_input)
+    print(bot_reply)
+    conversations.append(bot_reply)
+
+  save_file(conversations)
