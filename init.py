@@ -3,34 +3,27 @@ import sys
 import random
 import datetime
 
-def reply(user_input=""):
+def reply(user_input=''):
   selection = int(random.random() * 3)
   if selection == 0:
-    return "How are you?"
+    return 'How are you?'
   elif selection == 1:
-    return "I am fine."
+    return 'I am fine.'
   else:
     return user_input
 
 def filename():
   todaydetail = datetime.datetime.today()
-  filename = str(todaydetail.year)
-  filename += str(todaydetail.month)
-  filename += str(todaydetail.day)
-  filename += str(todaydetail.hour)
-  filename += str(todaydetail.minute)
-  filename += str(todaydetail.second)
-  filename += ".txt"
-  return filename
+  return todaydetail.strftime('%Y%m%d%H%M%S') + '.txt'
 
 def save_file(conversations):
-  file = open(filename(), "w")
+  file = open(filename(), 'w')
   for conversation in conversations:
     file.write(conversation)
     file.write('\n')
   file.close()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
   print('Hey, Welcome!!')
   conversations = []
   for value in range(3):
@@ -38,7 +31,7 @@ if __name__ == "__main__":
     conversations.append(user_input)
 
     if user_input == 'exit':
-      print("Bye")
+      print('Bye')
       conversations.append('Bye')
       break
 
