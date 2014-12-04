@@ -4,12 +4,19 @@ import random
 import datetime
 
 class Counter:
-  def __init__(self, sentence):
-    print("Counter is made")
-    self.sentence = sentence
+  def __init__(self):
+    self.word_dictionary = {}
 
-  def get_sentence(self):
-    print(self.sentence)
+  def add_words(self, sentence):
+    words = sentence.split()
+    for word in words:
+      if word in self.word_dictionary:
+        self.word_dictionary[word] = self.word_dictionary[word] + 1
+      else:
+        self.word_dictionary[word] = 1
+
+  def get_word_dictionary(self):
+    print(sorted(self.word_dictionary.items(), key=lambda x: x[0]))
 
 def reply(user_input=''):
   selection = int(random.random() * 3)
@@ -34,11 +41,11 @@ def save_file(conversations):
 if __name__ == '__main__':
   print('Hey, Welcome!!')
   conversations = []
+  counter = Counter()
   for value in range(3):
     user_input = input()
     conversations.append(user_input)
-    counter = Counter(user_input)
-    counter.get_sentence()
+    counter.add_words(user_input)
 
     if user_input == 'exit':
       print('Bye')
@@ -49,4 +56,5 @@ if __name__ == '__main__':
     print(bot_reply)
     conversations.append(bot_reply)
 
+  counter.get_word_dictionary()
   save_file(conversations)
