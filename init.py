@@ -3,6 +3,14 @@ import sys
 import random
 import datetime
 
+class Counter:
+  def __init__(self, sentence):
+    print("Counter is made")
+    self.sentence = sentence
+
+  def get_sentence(self):
+    print(self.sentence)
+
 def reply(user_input=''):
   selection = int(random.random() * 3)
   if selection == 0:
@@ -29,6 +37,8 @@ if __name__ == '__main__':
   for value in range(3):
     user_input = input()
     conversations.append(user_input)
+    counter = Counter(user_input)
+    counter.get_sentence()
 
     if user_input == 'exit':
       print('Bye')
