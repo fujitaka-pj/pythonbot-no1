@@ -3,20 +3,7 @@ import sys
 import random
 import datetime
 
-class Counter:
-  def __init__(self):
-    self.word_dictionary = {}
-
-  def add_words(self, sentence):
-    words = sentence.split()
-    for word in words:
-      if word in self.word_dictionary:
-        self.word_dictionary[word] = self.word_dictionary[word] + 1
-      else:
-        self.word_dictionary[word] = 1
-
-  def get_word_dictionary(self):
-    print(sorted(self.word_dictionary.items(), key=lambda x: x[0]))
+from myclass import Counter
 
 def reply(user_input=''):
   selection = int(random.random() * 3)
@@ -29,7 +16,7 @@ def reply(user_input=''):
 
 def filename():
   todaydetail = datetime.datetime.today()
-  return todaydetail.strftime('%Y%m%d%H%M%S') + '.txt'
+  return todaydetail.strftime('%Y%m%d%H%M%S') + '.log'
 
 def save_file(conversations):
   file = open(filename(), 'w')
@@ -39,6 +26,7 @@ def save_file(conversations):
   file.close()
 
 if __name__ == '__main__':
+
   print('Hey, Welcome!!')
   conversations = []
   counter = Counter()
@@ -57,4 +45,5 @@ if __name__ == '__main__':
     conversations.append(bot_reply)
 
   counter.get_word_dictionary()
+  counter.write_dictionary()
   save_file(conversations)
