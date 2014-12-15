@@ -45,5 +45,6 @@ if __name__ == '__main__':
     conversations.append(bot_reply)
 
   counter.get_word_dictionary()
+  counter.draw_chart()
   counter.write_dictionary()
   save_file(conversations)

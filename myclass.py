@@ -32,3 +32,18 @@ class Counter:
       file.write(dictionary)
       file.write('\n')
     file.close()
+
+  def draw_chart(self):
+    try:
+      import pylab
+      data  = []
+      words = []
+      for number in self.word_dictionary.values():
+        data.append(number)
+      for word in self.word_dictionary.keys():
+        words.append(word)
+      pylab.bar(range(len(self.word_dictionary)), data, align='center')
+      pylab.xticks(range(len(self.word_dictionary)), words)
+      pylab.show()
+    except:
+      print('Your system doesn\'t have matplotlib, so I can not draw a chart')

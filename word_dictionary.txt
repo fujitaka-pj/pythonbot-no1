@@ -1,8 +1,5 @@
-is 2
-it 1
-apple 1
-isn't 1
-this 2
 a 10
-pen 1
-no 1
+asdf 1
+r 2
+b 1
+gs 1
